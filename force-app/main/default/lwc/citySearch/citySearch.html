@@ -1,0 +1,26 @@
+<template>
+    <template if:true={stateId}>
+        <lightning-card title="Search Cities" icon-name="utility:search">
+            <lightning-input 
+                type="text" 
+                label="Search City" 
+                onchange={handleCitySearch}
+                placeholder="Enter City Name">
+            </lightning-input>
+
+            <template if:true={cities}>
+                <ul>
+                    <template for:each={cities} for:item="city">
+                        <li key={city.Id}>
+                            {city.Name}
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </template>
+        </lightning-card>
+    </template>
+</template>

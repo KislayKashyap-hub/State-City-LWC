@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Search States" icon-name="utility:search">
+        <lightning-input 
+            type="text" 
+            label="Search State" 
+            onchange={handleStateSearch}
+            placeholder="Enter State Name">
+        </lightning-input>
+
+        <template if:true={states}>
+            <ul>
+                <template for:each={states} for:item="state">
+                    <li key={state.Id} data-id={state.Id} onclick={selectState}>
+                        {state.Name}
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <!-- Pass selected stateId to Child Component -->
+        <c-city-search state-id={selectedStateId}></c-city-search>
+    </lightning-card>
+</template>
